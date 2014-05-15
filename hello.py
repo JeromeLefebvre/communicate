@@ -13,12 +13,16 @@ def hello():
 
 
 @app.route('/', methods=['POST'])
-def my_form_post():
-    print("Called")
+def communicate_post():
     if request.form['my-form'] == 'Send':
-        return render_template("communicate.html", name='send')
+        print("Send")
+        name = "Chris"
+        return render_template("communicate.html", name=name)
     elif request.form['my-form'] == 'Refresh':
+        print("Refresh")
         return render_template("communicate.html", name='refresh')
+    else:
+        return "Something went wrong"
 
 if __name__ == "__main__":
 	app.run()
