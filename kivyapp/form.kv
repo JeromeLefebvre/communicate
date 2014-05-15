@@ -1,0 +1,15 @@
+<Form@BoxLayout>:
+	orientation: "vertical"
+	Label:
+		text: "Hello " + root.name + "!"
+	TextInput:
+		id: textinput
+		text: root.name
+	BoxLayout:
+		orientation: "horizontal"
+		Button:
+			text: "Update"
+			on_press: root.update()
+		Button:
+			text: "Refresh"
+			on_press: root.refresh()
