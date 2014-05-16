@@ -5,16 +5,17 @@ A kivy app and Heroku hosted website
 
 Some notes on instalation
 
-virtualenv 702flask⁄
+virtualenv 702flask
 source 702flask/bin/activate
 pip3 install flask
 python hello.py
 ctrl-c # to quit python
 mkdir templates
 git init
-# Create heroku account
-# download heroku toolbelt
-# https://github.com/github/gitignore/blob/master/Python.gitignore add this to your gitignore
+Create heroku account
+download heroku toolbelt 
+
+add https://github.com/github/gitignore/blob/master/Python.gitignore  to your .gitignore
 pip3 install gunicorn
 echo "web: gunicorn hello:app">Procfile
 foreman start
@@ -56,3 +57,7 @@ http://stackoverflow.com/questions/2915471/install-a-python-package-into-a-diffe
 
 Some logging issues
 http://flask.pocoo.org/docs/errorhandling/
+
+On Virtual enviroments
+http://simononsoftware.com/virtualenv-tutorial/
+http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
