@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template
-from store import redis
+#from store import redis
+import redis as Redis
 
+redis = Redis.from_url( "redis://redistogo:e53d9c9eee21af1cb977ac1c75e493e2@angelfish.redistogo.com:9536/")
 app = Flask(__name__)
 
 
