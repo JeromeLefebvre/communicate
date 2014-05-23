@@ -5,7 +5,6 @@ import redis as Redis
 redis = Redis.from_url( "redis://redistogo:e53d9c9eee21af1cb977ac1c75e493e2@angelfish.redistogo.com:9536/")
 app = Flask(__name__)
 
-
 @app.route('/')
 def hello():
     name = redis.get('name').decode('utf-8')
