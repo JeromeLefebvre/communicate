@@ -10,7 +10,6 @@ isbns = [line.rstrip() for line in open("isbn_db.txt")]
 api = amazonproduct.API(locale='us')
 def amazon_lookup(isbn):
 	#items = api.call(Operation='ItemLookup',SearchIndex='Books',IdType='ISBN',ItemId='9780521375108', ResponseGroup='ItemAttributes')
-	print(isbn)
 	items = api.call(Operation='ItemLookup',SearchIndex='Books',IdType='ISBN',ItemId=isbn, ResponseGroup='ItemAttributes')
 	if len(items) > 1:
 		print(isbn)
@@ -18,15 +17,20 @@ def amazon_lookup(isbn):
 	item = items[0]
 	name = item.find('.//aws:Title', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	price = item.find('.//aws:FormattedPrice', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
-	book = Book(name, price, isbn)
+	return Book(name, price, isbn)
 
 books = []
 for isbn in isbns:
 	books.append(amazon_lookup(isbn))
 
+for book in books:
+	print(book)
+
 
 
 '''
+
+
 #items = api.item_lookup('9780521375108', IdType='ISBN', SearchIndex='Books', )
 #items = api.item_lookup('052137510X', IdType='ISBN', SearchIndex='Books')
 for item in items:
