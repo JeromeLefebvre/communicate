@@ -1,11 +1,11 @@
 import amazonproduct
 from lxml import etree
+from Book import Book
+#from collections import namedtuple
 
-from collections import namedtuple
+#Book = namedtuple("book", ["title", "price", "isbn"], verbose=False)
 
-Book = namedtuple("book", ["title", "price", "isbn"], verbose=False)
-
-isbns = [line.rstrip() for line in open("isbn_db.txt")]
+#isbns = [line.rstrip() for line in open("isbn_db.txt")]
 
 api = amazonproduct.API(locale='us')
 def amazon_lookup(isbn):
@@ -18,13 +18,6 @@ def amazon_lookup(isbn):
 	name = item.find('.//aws:Title', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	price = item.find('.//aws:FormattedPrice', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	return Book(name, price, isbn)
-
-books = []
-for isbn in isbns:
-	books.append(amazon_lookup(isbn))
-
-for book in books:
-	print(book)
 
 
 
