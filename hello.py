@@ -14,24 +14,17 @@ Book(title="Thomas' Calculus Early Transcendentals (11th Edition)", price='$160.
 redis = Redis.from_url( "redis://redistogo:e53d9c9eee21af1cb977ac1c75e493e2@angelfish.redistogo.com:9536/")
 app = Flask(__name__)
 
-@app.route('/')
-def hello():
-    entries = books
-    return render_template("comm.html", entries=entries)
 
-
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def communicate_post():
-    return request.args.getlist('wanted')
-    # if request.form['my-form'] == 'Send':
-    #     name = request.form['text']
-    #     redis.set('name',name)
-    #     return render_template("communicate.html", name=name)
-    # elif request.form['my-form'] == 'Refresh':
-    #     name = redis.get('name').decode('utf-8')
-    #     return render_template("communicate.html", name=name)
-    # else:
-    #     return "Something went wrong"
+    a = request.args.getlist('wanted') 
+    print(a)
+    if len(a) == 0:
+        entries = books
+        return render_template("comm.html", entries=entries)
+    else:
+        # Now need email here
+        return str(a)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -2,7 +2,7 @@
 <html lang="en">
 <h1>Books for Sale </h1>
 <body>
-<form action="." method="POST"> 
+<form action="." method="GET"> 
 <table>
        <tr>
   		<td> <h2>Title</h2> </td>
@@ -14,7 +14,7 @@
        <tr>
   		<td> {{ entry.title }} </td>
   		<td> {{ entry.price }} </td>
-  		<td> <input checked = 'checked' type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
+  		<td> <input type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
        </tr>
 {% endfor %}
     
