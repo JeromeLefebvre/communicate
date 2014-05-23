@@ -1,9 +1,7 @@
-
 from flask import Flask, request, render_template
 from store import redis
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def hello():
@@ -24,4 +22,4 @@ def communicate_post():
         return "Something went wrong"
 
 if __name__ == "__main__":
-	app.run()
+    app.run(debug=True)
