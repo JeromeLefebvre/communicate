@@ -1,7 +1,22 @@
+import requests
+
+def isbn_to_saved_image(isbn):
+    def cover_urls(isbn):
+        return ["http://covers.openlibrary.org/b/isbn/" + isbn + '-' + size + ".jpg" for size in ['L', 'M', 'S']][0]
+
+    url = cover_urls(isbn)
+    r = requests.get(url, stream=True)
+    if r.status_code == 200:
+        with open('covers/' + isbn + '.jpg', 'wb') as f:
+            for chunk in r.iter_content():
+                f.write(chunk)
+    else:
+        raise ValueError("Didn't get the ok to save the image " + isbn)
+
+'''
+Initial try using a google database, did not work out in the end
 import urllib
 import json
-
-isbn = '0387960368'
 
 json_url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn
 
@@ -20,3 +35,4 @@ thumbnail_url = j["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
 
 print(thumbnail_url)
 #urllib.urlretrieve(thumbnail_url, "cover/" + isbn + ".png")
+'''
