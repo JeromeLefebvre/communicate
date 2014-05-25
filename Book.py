@@ -8,7 +8,7 @@ Book.to_string = to_string
 
 @staticmethod
 def from_string(string):
-	# everything stored in redis is a binary in python, thus for python 3 we must first convert it to a string
-	name, price, isbn = str(string).split(':::')
-	return Book(name, price, isbn)
+	# everything stored in redis is a binary in python, thus for python 3 we must first convert it to a string\
+	name, price, isbn = string.decode("utf-8").split(':::')
+	return Book(str(name), price, isbn)
 Book.from_string = from_string
