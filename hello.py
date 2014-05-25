@@ -20,17 +20,21 @@ mail = Mail(app)
 
 @app.route('/', methods=['GET'])
 def communicate_post():
-    a = request.args.getlist('wanted') 
-    if len(a) == 0:
+    requested_books = request.args.getlist('wanted') 
+    if len(requested_books) == 0:
         entries = books
         return render_template("comm.html", entries=entries)
     else:
-        email = request.args['text']
-        msg =  Message("Hello here are the requested books", sender="jeorme.8675309@gmail.com",  recipients=["jeorme.8675309@gmail.com"])
-        msg.body = str(a)
-        msg.body += email
+        name = request.args['name']
+        email = request.args['email']
+        msg =  Message("Hello here are the requested books", sender="jeorme.8675309@gmail.com",  recipients=["jerome.p.lefebvre@gmail.com"])
+        msg.body = name + " who can be contacted at " + email + " wants:\n"
+        for book in requested_books:
+            msg.body += book + "\n"
+
         mail.send(msg)
     return 'Thank you!'
 
 if __name__ == "__main__":
     app.run(debug=True)
+
