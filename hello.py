@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from redis_to_tuple import allBooks
 from flask.ext.mail import Mail, Message
+from store import redis
 
 app = Flask(__name__)
 
@@ -29,8 +30,8 @@ def communicate_post():
         email = request.args['email']
         msg =  Message("Hello here are the requested books", sender="jeorme.8675309@gmail.com",  recipients=["jerome.p.lefebvre@gmail.com"])
         msg.body = name + " who can be contacted at " + email + " wants:\n"
-        for book in requested_books:
-            msg.body += book + "\n"
+        for isbn in requested_books:
+            msg.body += redis.get(isbn).decode('utf-8') + "\n" 
 
         mail.send(msg)
     return 'Thank you!'
