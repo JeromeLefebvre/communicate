@@ -2,7 +2,7 @@ import amazonproduct
 from lxml import etree
 from Book import Book
 
-api = amazonproduct.API(locale='us')
+api = amazonproduct.API(locale='us', scaling = 0.25)
 def amazon_lookup(isbn):
 	items = api.call(Operation='ItemLookup',SearchIndex='Books',IdType='ISBN',ItemId=isbn, ResponseGroup='ItemAttributes')
 	if len(items) > 1:
@@ -11,5 +11,6 @@ def amazon_lookup(isbn):
 	item = items[0]
 	name = item.find('.//aws:Title', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	price = item.find('.//aws:FormattedPrice', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
+	price = str(int(float(price.lstrip('$'))*scaling)) + '$'
 	return Book(name, price, isbn)
 
