@@ -6,7 +6,6 @@ from store import redis
 app = Flask(__name__)
 
 books = allBooks()
-
 app.config.update(dict(
     DEBUG = True,
     MAIL_SERVER = 'smtp.gmail.com',
