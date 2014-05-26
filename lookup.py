@@ -12,5 +12,6 @@ def amazon_lookup(isbn, scaling = 0.25):
 	name = item.find('.//aws:Title', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	price = item.find('.//aws:FormattedPrice', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
 	price = str(int(float(price.lstrip('$'))*scaling)) + '$'
-	return Book(name, price, isbn)
+	author = item.find('.//aws:Author', namespaces={'aws': "http://webservices.amazon.com/AWSECommerceService/2011-08-01"}).text
+	return Book(name, price, isbn, author)
 

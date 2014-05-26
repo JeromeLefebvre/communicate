@@ -18,6 +18,10 @@ app.config.update(dict(
 
 mail = Mail(app)
 
+@app.route('/')
+def intial():
+    return render_template("comm.html", entries=books)
+
 @app.route('/', methods=['GET'])
 def communicate_post():
     requested_books = request.args.getlist('wanted') 

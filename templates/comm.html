@@ -6,6 +6,7 @@
 <table>
        <tr>
   		<td> <h2>Title</h2> </td>
+      <td> <h2>Author </h2></td>
   		<td> <h2>Price </h2></td>
   		<td> <h2>Wanted</h2></td>
        </tr>
@@ -13,6 +14,7 @@
 {% for entry in entries %}
        <tr>
   		<td> {{ entry.title }} </td>
+      <td> {{ entry.author }} </td>
   		<td> {{ entry.price }} </td>
   		<td> <input type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
        </tr>
