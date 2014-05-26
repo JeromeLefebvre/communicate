@@ -2,8 +2,8 @@ import amazonproduct
 from lxml import etree
 from Book import Book
 
-api = amazonproduct.API(locale='us', scaling = 0.25)
-def amazon_lookup(isbn):
+api = amazonproduct.API(locale='us')
+def amazon_lookup(isbn, scaling = 0.25):
 	items = api.call(Operation='ItemLookup',SearchIndex='Books',IdType='ISBN',ItemId=isbn, ResponseGroup='ItemAttributes')
 	if len(items) > 1:
 		print(isbn)
