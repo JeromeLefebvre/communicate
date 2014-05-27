@@ -13,7 +13,7 @@
     
 {% for entry in entries %}
        <tr>
-  		<td> {{ entry.title }} </td>
+  		<td> <a href="{{ entry.amazon_url }}">{{ entry.title }}</a></td>
       <td> {{ entry.author }} </td>
   		<td> {{ entry.price }} </td>
   		<td> <input type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
