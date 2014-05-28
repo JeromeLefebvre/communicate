@@ -20,25 +20,40 @@ mail = Mail(app)
 
 @app.route('/')
 def intial():
+    print("Initial called...")
     return render_template("comm.html", entries=sorted(books, key=lambda entry: entry.author))
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['POST'])
 def communicate_post():
-    requested_books = request.args.getlist('wanted') 
+    print("Called fdakslfdjalsfkjdsal;kjflksdjafljsal;kfjda!")
+    requested_books = request.form.getlist('wanted')
+    print(len(requested_books))
+    print(dir(request))
     if len(requested_books) == 0:
         entries = books
         return render_template("comm.html", entries=books)
     else:
-        name = request.args['name']
-        email = request.args['email']
+        list_of_books = ''
+        for isbn in requested_books:
+            list_of_books += redis.get(isbn).decode('utf-8') + "\n"
+        name = request.form['name']
+        email = request.form['email']
         msg =  Message("Hello here are the requested books", sender="jeorme.8675309@gmail.com",  recipients=["jerome.p.lefebvre@gmail.com"])
         msg.body = name + " who can be contacted at " + email + " wants:\n"
-        for isbn in requested_books:
-            msg.body += redis.get(isbn).decode('utf-8') + "\n" 
-
+        
+        msg.body += list_of_books
         mail.send(msg)
-    return 'Thank you!'
+
+        name = request.form['name']
+        email = request.form['email']
+        msg =  Message("Hello here are the books you requested", sender="jerome.p.lefebvre@gmail.com",  recipients=[email])
+        #msg.body = name + " who can be contacted at " + email + " wants:\n"
+        msg.body = ''
+        for isbn in requested_books:
+            msg.body += redis.get(isbn).decode('utf-8').split(':::')[0] + "\n"
+        mail.send(msg)        
+    return 'Thank you! An email is being sent to you about the books.'
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 

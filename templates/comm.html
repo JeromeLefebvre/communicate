@@ -3,8 +3,8 @@
 <body>
 <h1>Math Books for Sale</h1><h3> by Jerome Lefebvre</h3>
 
-<p> Thank you for looking at the books that I have to sell. The price is set to be 1/4 of the amazon list price rounded down. But, I'm always willing to go with a better deal.</p><p>Select the books that you want and enter your name and email at the top (or bottom) of the page and this will send me a list of books you are interested in. I'll get them to you as quickly as possible. Any books left over will be donated to the book store and not all books are in mint conditions. I'll be around campus until the 23th of June, the remaing books will be donated on that day.</p>
-<form action="." method="GET"> 
+<p> Thank you for looking at the books that I have to sell. The price is set to be 1/4 of the amazon list price rounded down. But, I'm always willing to go with a better deal.</p><p>Select the books that you want and enter your name and email at the top of the page and this will send me a list of books you are interested in. I'll get them to you as quickly as possible. Any books left over will be donated to the book store and not all books are in mint conditions. I'll be around campus until the 23th of June, the remaing books will be donated on that day.</p>
+<form action="." method="POST"> 
 Name: <input type="text" name="name"> Email: <input type="text" name="email">
 <input type="submit" name="my-form" value="Send">
 <table>
@@ -13,7 +13,6 @@ Name: <input type="text" name="name"> Email: <input type="text" name="email">
     <td> <h2>Title</h2> </td>
     <td> <h2>Author </h2></td>
     <td> <h2> </h2></td>
-    
   </tr>
 
 {% for entry in entries %}
@@ -23,15 +22,11 @@ Name: <input type="text" name="name"> Email: <input type="text" name="email">
       <a href="{{ entry.amazon_url }}">{{ entry.title[0:100] }} </a></td>
     <td style="width:200px; word-wrap:break-word;"> {{ entry.author }} </td>
     <td> {{ entry.price }} </td>
-    
   </tr>
 {% endfor %}
-
 </table>
-Name: <input type="text" name="name"> Email: <input type="text" name="email">
-<input type="submit" name="my-form" value="Send">
 </form>
 
-The code used to create this website can be found at <link href="https://github.com/JeromeLefebvre/communicate">. My thanks to Berhnard, Carmen, Christina and in particular Jia from the math department for helping me with the site.
+The code used to create this website can be found on my <a href="https://github.com/JeromeLefebvre/communicate">Github account </a>. My thanks to Berhnard, Carmen, Christina and in particular Jia from the math department for helping me with the site.
 </body>
 </html>
