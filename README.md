@@ -1,6 +1,9 @@
 communicate
 ===========
 
+The website is currently at:
+http://whispering-springs-9434.herokuapp.com
+
 A kivy app and Heroku hosted website
 
 Some of the first few steps in setting things up:
