@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<h1>Books for Sale </h1>
 <body>
+<h1>Math Books for Sale</h1>
+
+<p> Thank you for looking at the books that I have to sell. The price is set to be 1/4 of the amazon price rounded down. But, I'm always willing to go with a better price.</p><p>Select the books that you want and enter your name and email at the bottom of the page and this will send me a list of books you are interested in. I'll get them to you as quickly as possible. Any books left over will be donated to the book store and not all books are in mint conditions</p>
 <form action="." method="GET"> 
 <table>
-       <tr>
-  		<td> <h2>Title</h2> </td>
-      <td> <h2>Author </h2></td>
-  		<td> <h2>Price </h2></td>
-  		<td> <h2>Wanted</h2></td>
-       </tr>
-    
-{% for entry in entries %}
-       <tr>
-  		<td> <a href="{{ entry.amazon_url }}">{{ entry.title }}</a></td>
-      <td> {{ entry.author }} </td>
-  		<td> {{ entry.price }} </td>
-  		<td> <input type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
-       </tr>
-{% endfor %}
-    
-</table>
+  <tr>
+    <td> <h2>Title</h2> </td>
+    <td> <h2>Author </h2></td>
+    <td> <h2>Price </h2></td>
+    <td> <h2>Wanted</h2></td>
+  </tr>
 
+{% for entry in entries %}
+  <tr>
+    <td style="width:700px; word-wrap:break-word;"> 
+      <a href="{{ entry.amazon_url }}">{{ entry.title[0:100] }} </a></td>
+    <td style="width:200px; word-wrap:break-word;"> {{ entry.author }} </td>
+    <td> {{ entry.price }} </td>
+    <td> <input type="checkbox" name="wanted" value="{{ entry.isbn }}"> </td>
+  </tr>
+{% endfor %}
+
+</table>
 Name: <input type="text" name="name"> Email: <input type="text" name="email">
 <input type="submit" name="my-form" value="Send">
 </form>
