@@ -20,14 +20,14 @@ mail = Mail(app)
 
 @app.route('/')
 def intial():
-    return render_template("comm.html", entries=books)
+    return render_template("comm.html", entries=sorted(books, key=lambda entry: entry.author))
 
 @app.route('/', methods=['GET'])
 def communicate_post():
     requested_books = request.args.getlist('wanted') 
     if len(requested_books) == 0:
         entries = books
-        return render_template("comm.html", entries=entries)
+        return render_template("comm.html", entries=books)
     else:
         name = request.args['name']
         email = request.args['email']
