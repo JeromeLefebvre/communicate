@@ -5,7 +5,7 @@ from store import redis
 
 app = Flask(__name__)
 
-books = allBooks()
+
 app.config.update(dict(
     DEBUG = True,
     MAIL_SERVER = 'smtp.gmail.com',
@@ -21,6 +21,7 @@ mail = Mail(app)
 @app.route('/')
 def intial():
     print("Initial called...")
+    books = allBooks()
     return render_template("comm.html", entries=sorted(books, key=lambda entry: entry.author))
 
 @app.route('/', methods=['POST'])
