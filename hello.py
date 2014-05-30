@@ -20,16 +20,12 @@ mail = Mail(app)
 
 @app.route('/')
 def intial():
-    print("Initial called...")
     books = allBooks()
     return render_template("comm.html", entries=sorted(books, key=lambda entry: entry.author))
 
 @app.route('/', methods=['POST'])
 def communicate_post():
-    print("Called fdakslfdjalsfkjdsal;kjflksdjafljsal;kfjda!")
     requested_books = request.form.getlist('wanted')
-    print(len(requested_books))
-    print(dir(request))
     if len(requested_books) == 0:
         entries = books
         return render_template("comm.html", entries=books)
