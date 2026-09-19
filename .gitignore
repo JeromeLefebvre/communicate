@@ -46,3 +46,6 @@ docs/_build/
 
 # Ignore the cover images
 covers/
+
+# MacOS
+.DS_Store
